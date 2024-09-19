@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮换</title>
+    <style type="text/css">
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+        }
+
+        ul li {
+            width: 50px;
+            margin-left: 20px;
+            text-align: center;
+            border: 5px solid #ddd;
+            cursor: default;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        img {
+            width: 500px;
+            height: 500px;
+            display: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>图1</li>
+        <li>图2</li>
+        <li>图3</li>
+        <li>图4</li>
+    </ul>
+    <div>
+        <img src="./two1.png" alt="" style="display: block;">
+        <img src="./two2.jpg" alt="">
+        <img src="./two3.jpg" alt="">
+        <img src="./two4.jpg" alt="">
+    </div>
+
+    <script>
+        'use strict';
+
+        let liItems = document.getElementsByTagName('li');
+        let images = document.getElementsByTagName('img');
+
+        for (let i = 0; i < liItems.length; ++i) {
+            liItems[i].index = i;
+
+            liItems[i].addEventListener('mouseover', function() {
+                liItems[i].style.backgroundColor = 'yellow';
+                console.log(this.index);
+                for (let j = 0; j < images.length; ++j) {
+                    images[j].style.display = 'none';
+                }
+                images[this.index].style.display = 'block';
+            });
+
+            liItems[i].addEventListener('mouseout', function() {
+                liItems[i].style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            });
+        }
+    </script>
+</body>
+</html>
